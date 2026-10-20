@@ -1,0 +1,1890 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grammar Detective | 중3 영어 독해 문법</title>
+<style>
+:root{
+  --primary:#7160cc;
+  --primary-dark:#5140a7;
+  --purple:#eee9ff;
+  --mint:#def7e9;
+  --pink:#ffe5ec;
+  --yellow:#fff2c9;
+  --text:#303449;
+  --muted:#777c91;
+  --border:#e6e2f1;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,"Noto Sans KR",sans-serif;
+  color:var(--text);
+  background:linear-gradient(135deg,#f5f0ff,#eafaf4);
+  min-height:100vh;
+}
+button,input{font:inherit}
+button{cursor:pointer}
+button:disabled{opacity:.5;cursor:not-allowed}
+.app{max-width:920px;margin:auto;padding:22px 16px 60px}
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin-bottom:20px;
+}
+.logo{font-size:23px;font-weight:900;color:var(--primary)}
+.score{
+  background:white;
+  padding:10px 15px;
+  border-radius:25px;
+  font-size:13px;
+  font-weight:800;
+}
+.panel{
+  background:white;
+  border-radius:24px;
+  padding:28px;
+  box-shadow:0 12px 35px #66539912;
+}
+h1{font-size:29px;margin:10px 0}
+h2{font-size:23px;margin:12px 0}
+h3{font-size:18px}
+p{line-height:1.85}
+.sub{color:var(--muted);font-size:14px}
+.center{text-align:center}
+.hero{font-size:50px;margin:10px 0}
+.btn{
+  border:0;
+  background:var(--primary);
+  color:white;
+  padding:13px 20px;
+  min-height:46px;
+  border-radius:14px;
+  font-weight:800;
+}
+.btn.secondary{background:var(--purple);color:var(--primary-dark)}
+.btn.mint{background:var(--mint);color:#256b4b}
+.btn.outline{
+  background:white;
+  border:2px solid #ded7fa;
+  color:var(--primary-dark);
+}
+.btn.small{padding:8px 12px;min-height:36px;font-size:13px}
+.actions{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:10px;
+  margin-top:22px;
+}
+.part-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:13px;
+  margin:20px 0;
+}
+.part-card{
+  border:2px solid var(--border);
+  border-radius:18px;
+  padding:19px;
+  background:white;
+  display:flex;
+  flex-direction:column;
+  gap:9px;
+}
+.part-card.completed{
+  background:#f1fff7;
+  border-color:#a6dfbd;
+}
+.part-card h3{margin:0}
+.part-card p{font-size:13px;color:var(--muted);margin:0}
+.part-card .btn{margin-top:auto}
+.part-number{font-size:12px;color:var(--primary);font-weight:800}
+.steps{
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  gap:6px;
+  margin:18px 0;
+}
+.step{
+  border:0;
+  background:#f0edf8;
+  color:#79738f;
+  border-radius:11px;
+  padding:10px 3px;
+  text-align:center;
+  font-size:11px;
+}
+.step.active{
+  background:#ded5ff;
+  color:#4c339f;
+  font-weight:900;
+}
+.step.done{
+  background:#d9f5e7;
+  color:#286b4b;
+}
+.reading{
+  background:#faf8ff;
+  border:1px solid #e6ddff;
+  border-radius:20px;
+  padding:23px;
+  margin:18px 0;
+}
+.reading-title{
+  font-size:21px;
+  font-weight:900;
+  margin-bottom:17px;
+  color:#4c3a96;
+}
+.english{font-size:18px;line-height:2.15}
+.english p{margin:0 0 15px}
+.translation{
+  margin-top:15px;
+  background:#eaf8f1;
+  border-radius:14px;
+  padding:17px;
+  font-size:14px;
+  line-height:2;
+}
+.antecedent{
+  font-weight:700;
+  text-decoration-line:underline;
+  text-decoration-style:dotted;
+  text-decoration-color:#967be5;
+  text-decoration-thickness:2px;
+  text-underline-offset:5px;
+}
+.relative-pronoun{
+  font-weight:900;
+  color:#56379b;
+  background:linear-gradient(
+    transparent 18%,
+    #ffe69a 18%,
+    #ffe69a 90%,
+    transparent 90%
+  );
+  border-radius:3px;
+  padding:1px 3px;
+}
+.relative-clause{
+  text-decoration-line:underline;
+  text-decoration-color:#7acda7;
+  text-decoration-thickness:2px;
+  text-underline-offset:5px;
+}
+.no-enhancement .antecedent,
+.no-enhancement .relative-clause{
+  font-weight:inherit;
+  color:inherit;
+  text-decoration:none;
+}
+.no-enhancement .relative-pronoun{
+  font-weight:inherit;
+  color:inherit;
+  background:none;
+  padding:0;
+}
+.enhancement-legend{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  padding:12px;
+  background:white;
+  border:1px solid var(--border);
+  border-radius:12px;
+}
+.legend-item{font-size:12px;color:#626477}
+.enhancement-toggle{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin:14px 0;
+  padding:12px 15px;
+  background:#f6f3ff;
+  border-radius:14px;
+}
+.enhancement-toggle label{font-size:14px;font-weight:750}
+.enhancement-toggle input{
+  width:18px;
+  height:18px;
+  accent-color:var(--primary);
+  vertical-align:middle;
+}
+mark{background:#ffeaa5;border-radius:5px;padding:2px 3px}
+.clickword{
+  display:inline;
+  border:0;
+  border-bottom:2px dashed #9d8ae0;
+  background:#f0ebff;
+  color:#4d349e;
+  padding:2px 5px;
+  border-radius:5px;
+  font-size:inherit;
+  font-weight:800;
+}
+.clickword.found{
+  background:#bdeed6;
+  border-bottom:2px solid #52b987;
+  color:#186542;
+}
+.notice{
+  background:#f6f3ff;
+  border-radius:16px;
+  padding:17px;
+  line-height:1.85;
+  font-size:14px;
+}
+.question{
+  background:#f9f7ff;
+  border-radius:18px;
+  padding:21px;
+  margin:17px 0;
+}
+.question-title{font-size:19px;font-weight:800;line-height:1.7}
+.options{display:grid;gap:10px;margin-top:16px}
+.option{
+  width:100%;
+  text-align:left;
+  background:white;
+  border:2px solid #e4def2;
+  border-radius:13px;
+  padding:14px 16px;
+  color:var(--text);
+}
+.option:hover:not(:disabled){border-color:#a896e9}
+.option.correct{background:#dff8e9;border-color:#76cda0}
+.option.wrong{background:#ffe8ed;border-color:#ec9bb1}
+.feedback{
+  padding:16px;
+  border-radius:14px;
+  margin-top:15px;
+  line-height:1.8;
+}
+.feedback.good{background:var(--mint)}
+.feedback.hint{background:var(--yellow)}
+.feedback.bad{background:var(--pink)}
+.answer{
+  width:100%;
+  padding:15px;
+  border:2px solid #ddd5f2;
+  border-radius:14px;
+  outline:none;
+  font-size:17px;
+  margin-top:14px;
+}
+.answer:focus{border-color:var(--primary)}
+.progress{
+  height:12px;
+  background:#eeebf5;
+  border-radius:20px;
+  overflow:hidden;
+  margin:14px 0;
+}
+.fill{
+  height:100%;
+  background:linear-gradient(90deg,#8d73e8,#6ed3ae);
+  transition:width .3s;
+}
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin:20px 0;
+}
+.stat{
+  background:#f5f2ff;
+  border-radius:15px;
+  padding:16px 8px;
+  text-align:center;
+}
+.stat b{display:block;font-size:26px;color:var(--primary)}
+.stat span{color:var(--muted);font-size:12px}
+.grammar-box{
+  background:#f8f6ff;
+  border-left:5px solid #8e77e2;
+  border-radius:13px;
+  padding:18px;
+  margin:16px 0;
+  line-height:1.9;
+}
+.grammar-example{
+  background:white;
+  border:1px solid #e4ddf5;
+  border-radius:12px;
+  padding:14px;
+  margin-top:12px;
+  line-height:1.9;
+}
+.tag{
+  display:inline-block;
+  padding:5px 10px;
+  border-radius:20px;
+  background:var(--purple);
+  color:var(--primary-dark);
+  font-size:12px;
+  font-weight:800;
+}
+.auto-notice{
+  margin-top:12px;
+  font-size:13px;
+  font-weight:700;
+  color:#4b8366;
+}
+.auto-track{
+  height:5px;
+  background:#d7e9dd;
+  border-radius:8px;
+  overflow:hidden;
+  margin-top:8px;
+}
+.auto-fill{
+  height:100%;
+  background:#67bd91;
+  width:100%;
+  animation:autoCountdown var(--delay,1500ms) linear forwards;
+}
+@keyframes autoCountdown{
+  from{width:100%}
+  to{width:0%}
+}
+.hidden{display:none!important}
+footer{
+  text-align:center;
+  color:#9792a5;
+  font-size:12px;
+  margin-top:22px;
+}
+@media(max-width:600px){
+  .panel{padding:18px}
+  .logo{font-size:19px}
+  .part-grid{grid-template-columns:1fr}
+  .steps{gap:3px}
+  .step{font-size:9px;padding:9px 2px}
+  .english{font-size:16px}
+  .stats{gap:6px}
+}
+</style>
+</head>
+
+<body>
+<div class="app">
+  <header>
+    <div class="logo">🔎 Grammar Detective</div>
+    <div class="score" id="scoreDisplay">⭐ 0 XP</div>
+  </header>
+
+  <main id="screen"></main>
+
+  <footer>
+    Middle School Grade 3 · Reading-Based Grammar Learning
+  </footer>
+</div>
+
+<script>
+"use strict";
+
+/* ======================================
+   기본 설정
+
+   정답을 보여준 후 자동으로 넘어가는 시간
+   1500 = 1.5초
+   2000 = 2초
+   3000 = 3초
+====================================== */
+
+const AUTO_NEXT_DELAY=1500;
+const WRONG_NEXT_DELAY=2500;
+
+const PARTS=[
+  {
+    icon:"📖",
+    name:"Reading",
+    ko:"영어 지문 읽기",
+    desc:"짧은 이야기를 읽고 내용을 이해해요."
+  },
+  {
+    icon:"🔎",
+    name:"Notice",
+    ko:"문법 표현 발견",
+    desc:"관계대명사를 직접 찾아 클릭해요."
+  },
+  {
+    icon:"🧠",
+    name:"Understand",
+    ko:"문법 규칙 이해",
+    desc:"who, which, that의 사용 원리를 배워요."
+  },
+  {
+    icon:"📝",
+    name:"Check",
+    ko:"문법 이해도 확인",
+    desc:"객관식 문제로 이해도를 확인해요."
+  },
+  {
+    icon:"✍️",
+    name:"Apply",
+    ko:"문장 완성",
+    desc:"문맥에 맞는 관계대명사를 입력해요."
+  },
+  {
+    icon:"🏆",
+    name:"Review",
+    ko:"학습 결과 확인",
+    desc:"점수와 오답 기록을 확인해요."
+  }
+];
+
+/* ======================================
+   1. 영어 지문
+====================================== */
+
+const LESSON={
+  title:"The Student Who Changed Our School",
+  grammar:"관계대명사 who / which / that",
+
+  paragraphs:[
+    [
+      "Last year, our school had a serious problem.",
+      "Many students threw away plastic bottles every day.",
+      "The trash cans were always full."
+    ],
+    [
+      "One day, a student named Mina had an idea.",
+      "Mina was a girl who cared deeply about the environment.",
+      "She started a project that encouraged students to use reusable bottles."
+    ],
+    [
+      "She also created posters which explained the problem of plastic waste.",
+      "At first, only a few students joined her project.",
+      "However, the students who participated shared their experiences with others."
+    ],
+    [
+      "Soon, more students began to bring reusable bottles.",
+      "The project became a movement that changed our school.",
+      "Mina showed us that small actions can make a big difference."
+    ]
+  ],
+
+  translations:[
+    "작년에 우리 학교에는 심각한 문제가 있었다. 많은 학생들이 매일 플라스틱병을 버렸다. 쓰레기통은 항상 가득 차 있었다.",
+    "어느 날 미나라는 학생이 아이디어를 떠올렸다. 미나는 환경을 깊이 생각하는 소녀였다. 그녀는 학생들이 재사용 가능한 물병을 사용하도록 장려하는 프로젝트를 시작했다.",
+    "그녀는 또한 플라스틱 쓰레기 문제를 설명하는 포스터를 만들었다. 처음에는 소수의 학생들만 프로젝트에 참여했다. 그러나 참여한 학생들이 자신의 경험을 다른 학생들과 공유했다.",
+    "곧 더 많은 학생들이 재사용 가능한 물병을 가져오기 시작했다. 그 프로젝트는 우리 학교를 변화시킨 운동이 되었다. 미나는 작은 행동이 큰 변화를 만들 수 있다는 것을 보여주었다."
+  ],
+
+  enhancements:[
+    {
+      sentence:"Mina was a girl who cared deeply about the environment.",
+      antecedent:"a girl",
+      pronoun:"who",
+      clause:"who cared deeply about the environment"
+    },
+    {
+      sentence:"She started a project that encouraged students to use reusable bottles.",
+      antecedent:"a project",
+      pronoun:"that",
+      clause:"that encouraged students to use reusable bottles"
+    },
+    {
+      sentence:"She also created posters which explained the problem of plastic waste.",
+      antecedent:"posters",
+      pronoun:"which",
+      clause:"which explained the problem of plastic waste"
+    },
+    {
+      sentence:"However, the students who participated shared their experiences with others.",
+      antecedent:"the students",
+      pronoun:"who",
+      clause:"who participated"
+    },
+    {
+      sentence:"The project became a movement that changed our school.",
+      antecedent:"a movement",
+      pronoun:"that",
+      clause:"that changed our school"
+    }
+  ],
+
+  grammarTargets:[
+    {
+      before:"Mina was a girl ",
+      word:"who",
+      after:" cared deeply about the environment.",
+      meaning:"환경을 깊이 생각하는 소녀"
+    },
+    {
+      before:"She started a project ",
+      word:"that",
+      after:" encouraged students to use reusable bottles.",
+      meaning:"학생들이 재사용 가능한 물병을 사용하도록 장려하는 프로젝트"
+    },
+    {
+      before:"She also created posters ",
+      word:"which",
+      after:" explained the problem of plastic waste.",
+      meaning:"플라스틱 쓰레기 문제를 설명하는 포스터"
+    },
+    {
+      before:"However, the students ",
+      word:"who",
+      after:" participated shared their experiences with others.",
+      meaning:"참여한 학생들"
+    },
+    {
+      before:"The project became a movement ",
+      word:"that",
+      after:" changed our school.",
+      meaning:"우리 학교를 변화시킨 운동"
+    }
+  ]
+};
+
+/* ======================================
+   2. 객관식 문제
+====================================== */
+
+const QUIZ=[
+  {
+    q:"Mina was a girl who cared deeply about the environment. 이 문장에서 who의 선행사는?",
+    options:[
+      "Mina",
+      "a girl",
+      "the environment",
+      "our school"
+    ],
+    answer:1,
+    hint1:"관계대명사 앞에 있는 명사를 찾아보세요.",
+    hint2:"who 바로 앞의 명사구를 확인하세요.",
+    explain:"who의 선행사는 a girl입니다. who cared deeply about the environment는 a girl을 수식합니다."
+  },
+  {
+    q:"The boy _____ helped me is my classmate. 빈칸에 가장 적절한 것은?",
+    options:[
+      "which",
+      "where",
+      "who",
+      "when"
+    ],
+    answer:2,
+    hint1:"The boy는 사람을 나타내는 명사입니다.",
+    hint2:"사람을 선행사로 하는 주격 관계대명사를 고르세요.",
+    explain:"사람을 선행사로 하는 주격 관계대명사 who가 정답입니다. that도 가능하지만 선택지에는 없습니다."
+  },
+  {
+    q:"She created posters which explained the problem. 에서 which의 역할은?",
+    options:[
+      "시간을 나타낸다",
+      "앞의 posters를 설명한다",
+      "문장을 의문문으로 만든다",
+      "이유를 나타낸다"
+    ],
+    answer:1,
+    hint1:"which 앞에 있는 명사를 확인하세요.",
+    hint2:"which explained the problem이 무엇을 수식하나요?",
+    explain:"which explained the problem은 posters를 수식하는 관계대명사절입니다."
+  },
+  {
+    q:"다음 중 문법적으로 올바른 문장은?",
+    options:[
+      "I know a boy which plays soccer.",
+      "I know a boy who plays soccer.",
+      "I know a boy who he plays soccer.",
+      "I know a boy who playing soccer."
+    ],
+    answer:1,
+    hint1:"who는 관계대명사절의 주어 역할을 합니다.",
+    hint2:"who 뒤에 주어 he를 다시 쓸 필요가 없어요.",
+    explain:"who가 plays의 주어 역할을 하므로 I know a boy who plays soccer.가 올바릅니다."
+  },
+  {
+    q:"The project became a movement that changed our school. 에서 that의 역할은?",
+    options:[
+      "명사절을 이끄는 접속사",
+      "주격 관계대명사",
+      "지시대명사",
+      "부사"
+    ],
+    answer:1,
+    hint1:"that 앞의 a movement를 확인하세요.",
+    hint2:"that changed our school이 a movement를 설명하고 있습니다.",
+    explain:"that은 a movement를 선행사로 하는 주격 관계대명사입니다."
+  }
+];
+
+/* ======================================
+   3. 문장 완성 문제
+====================================== */
+
+const WRITING=[
+  {
+    ko:"나는 영어를 잘하는 소녀를 안다.",
+    prompt:"I know a girl _____ speaks English well.",
+    accepted:["who","that"],
+    hint1:"선행사는 a girl입니다.",
+    hint2:"사람을 선행사로 하는 주격 관계대명사를 사용하세요.",
+    explain:"who 또는 that이 가능합니다. 관계대명사가 speaks의 주어 역할을 합니다."
+  },
+  {
+    ko:"이것은 나를 행복하게 만드는 책이다.",
+    prompt:"This is a book _____ makes me happy.",
+    accepted:["which","that"],
+    hint1:"선행사는 a book입니다.",
+    hint2:"사물을 선행사로 하는 관계대명사를 사용하세요.",
+    explain:"which 또는 that이 가능합니다. 관계대명사가 makes의 주어 역할을 합니다."
+  },
+  {
+    ko:"우리를 도와준 학생은 친절했다.",
+    prompt:"The student _____ helped us was kind.",
+    accepted:["who","that"],
+    hint1:"선행사는 The student입니다.",
+    hint2:"사람을 선행사로 하는 주격 관계대명사가 필요합니다.",
+    explain:"who 또는 that이 정답입니다. helped us가 student를 수식합니다."
+  }
+];
+
+/* ======================================
+   4. 학습 상태 및 저장
+====================================== */
+
+const STORAGE_KEY="grammar_detective_free_parts_v2";
+
+function freshState(){
+  return {
+    xp:0,
+    completed:[false,false,false,false,false,false],
+    found:[],
+    readingCorrect:false,
+    quizIndex:0,
+    quizAnswers:[],
+    writingIndex:0,
+    writingAnswers:[],
+    mistakes:[]
+  };
+}
+
+function loadState(){
+  try{
+    const s=JSON.parse(localStorage.getItem(STORAGE_KEY));
+
+    if(
+      s &&
+      Array.isArray(s.completed) &&
+      s.completed.length===6 &&
+      Array.isArray(s.found) &&
+      Array.isArray(s.quizAnswers) &&
+      Array.isArray(s.writingAnswers) &&
+      Array.isArray(s.mistakes)
+    ){
+      return s;
+    }
+  }catch(e){}
+
+  return freshState();
+}
+
+let state=loadState();
+let activePart=-1;
+let currentAttempt=0;
+let questionLocked=false;
+let enhancementEnabled=true;
+let autoTimer=null;
+let navigationToken=0;
+
+function $(id){
+  return document.getElementById(id);
+}
+
+function esc(value){
+  return String(value).replace(/[&<>"']/g,c=>({
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;",
+    "'":"&#39;"
+  })[c]);
+}
+
+function save(){
+  try{
+    localStorage.setItem(STORAGE_KEY,JSON.stringify(state));
+  }catch(e){
+    console.warn("학습 기록을 저장하지 못했습니다.");
+  }
+}
+
+function updateScore(){
+  $("scoreDisplay").textContent="⭐ "+state.xp+" XP";
+}
+
+function addXP(amount){
+  state.xp+=amount;
+  save();
+  updateScore();
+}
+
+function markCompleted(index){
+  state.completed[index]=true;
+  save();
+}
+
+function cancelAutoNext(){
+  if(autoTimer!==null){
+    clearTimeout(autoTimer);
+    autoTimer=null;
+  }
+  navigationToken++;
+}
+
+function scheduleAutoNext(callback,delay=AUTO_NEXT_DELAY){
+  cancelAutoNext();
+  const token=navigationToken;
+
+  autoTimer=setTimeout(()=>{
+    if(token!==navigationToken)return;
+    autoTimer=null;
+    callback();
+  },delay);
+}
+
+function autoNotice(delay=AUTO_NEXT_DELAY){
+  return `
+    <div class="auto-notice" aria-live="polite">
+      ✓ 잠시 후 자동으로 다음 문제로 이동합니다.
+      <div class="auto-track">
+        <div
+          class="auto-fill"
+          style="--delay:${delay}ms"
+        ></div>
+      </div>
+    </div>
+  `;
+}
+
+function speak(text){
+  if(!("speechSynthesis" in window)){
+    alert("이 브라우저에서는 음성 재생을 지원하지 않습니다.");
+    return;
+  }
+
+  speechSynthesis.cancel();
+
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang="en-US";
+  u.rate=.85;
+  speechSynthesis.speak(u);
+}
+
+function speakPassage(){
+  speak(LESSON.paragraphs.flat().join(" "));
+}
+
+function normalizeAnswer(text){
+  return String(text)
+    .toLowerCase()
+    .replace(/[.,!?]/g,"")
+    .trim();
+}
+
+/* ======================================
+   5. 파트 자유 선택
+====================================== */
+
+function goHome(){
+  cancelAutoNext();
+  activePart=-1;
+  renderHome();
+}
+
+function selectPart(index){
+  cancelAutoNext();
+  activePart=index;
+  renderPart();
+}
+
+function completePart(index){
+  markCompleted(index);
+  goHome();
+}
+
+function partNavigation(){
+  return `
+    <div class="actions">
+      <button class="btn small outline" onclick="goHome()">
+        🏠 파트 선택
+      </button>
+    </div>
+  `;
+}
+
+function stepBar(){
+  return `
+    <div class="steps">
+      ${PARTS.map((p,i)=>`
+        <button
+          class="step ${
+            i===activePart
+              ?"active"
+              :state.completed[i]
+                ?"done"
+                :""
+          }"
+          onclick="selectPart(${i})"
+          title="${esc(p.ko)}"
+        >
+          ${i+1}<br>${p.name}
+        </button>
+      `).join("")}
+    </div>
+  `;
+}
+
+function renderHome(){
+  updateScore();
+
+  const count=state.completed.filter(Boolean).length;
+
+  $("screen").innerHTML=`
+    <section class="panel">
+      <div class="center">
+        <div class="hero">🕵️‍♀️</div>
+        <h1>Grammar Detective</h1>
+        <p class="sub">Reading-Based Grammar Learning</p>
+        <h2>원하는 학습 파트를 선택하세요!</h2>
+        <p>
+          중학교 3학년 · ${LESSON.grammar}<br>
+          순서와 관계없이 원하는 활동부터 시작할 수 있어요.
+        </p>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <b>${state.xp}</b>
+          <span>획득 XP</span>
+        </div>
+        <div class="stat">
+          <b>${count}/6</b>
+          <span>완료 파트</span>
+        </div>
+        <div class="stat">
+          <b>${state.found.length}/5</b>
+          <span>문법 표현 발견</span>
+        </div>
+      </div>
+
+      <div class="part-grid">
+        ${PARTS.map((p,i)=>{
+          const done=state.completed[i];
+          const progress=i===1
+            ?`${state.found.length}/5개 발견`
+            :i===3
+              ?`${state.quizIndex}/${QUIZ.length}문제`
+              :i===4
+                ?`${state.writingIndex}/${WRITING.length}문제`
+                :"";
+
+          return `
+            <div class="part-card ${done?"completed":""}">
+              <div class="part-number">
+                PART ${i+1}
+                ${done?" · ✅ 완료":""}
+              </div>
+              <h3>${p.icon} ${p.name}</h3>
+              <strong>${p.ko}</strong>
+              <p>${p.desc}</p>
+              <p>${progress}</p>
+              <button
+                class="btn ${done?"mint":""}"
+                onclick="selectPart(${i})"
+              >
+                ${
+                  done
+                    ?"다시 보기"
+                    :i===3&&state.quizIndex>0
+                      ?"이어서 학습"
+                      :i===4&&state.writingIndex>0
+                        ?"이어서 학습"
+                        :"선택하기 →"
+                }
+              </button>
+            </div>
+          `;
+        }).join("")}
+      </div>
+
+      <div class="notice">
+        <strong>💡 학습 안내</strong>
+        <p>
+          각 파트는 독립적으로 선택할 수 있어요.
+          객관식과 문장 완성 문제는 정답을 맞히면
+          피드백을 보여준 후 자동으로 다음 문제로 넘어갑니다.
+        </p>
+      </div>
+
+      <div class="actions">
+        <button class="btn outline" onclick="resetProgress()">
+          🔄 전체 학습 초기화
+        </button>
+      </div>
+    </section>
+  `;
+}
+
+function renderPart(){
+  updateScore();
+
+  switch(activePart){
+    case 0:renderReading();break;
+    case 1:renderDiscovery();break;
+    case 2:renderGrammar();break;
+    case 3:renderQuiz();break;
+    case 4:renderWriting();break;
+    case 5:renderResults();break;
+    default:renderHome();
+  }
+}
+
+/* ======================================
+   6. Visual Input Enhancement
+====================================== */
+
+function renderEnhancedSentence(sentence){
+  const target=LESSON.enhancements.find(
+    item=>item.sentence===sentence
+  );
+
+  if(!target)return esc(sentence);
+
+  const a=sentence.indexOf(target.antecedent);
+  const c=sentence.indexOf(
+    target.clause,
+    a+target.antecedent.length
+  );
+
+  if(a<0||c<0)return esc(sentence);
+
+  const before=sentence.slice(0,a);
+  const antecedent=sentence.slice(
+    a,a+target.antecedent.length
+  );
+  const between=sentence.slice(
+    a+target.antecedent.length,c
+  );
+  const clause=sentence.slice(
+    c,c+target.clause.length
+  );
+  const after=sentence.slice(
+    c+target.clause.length
+  );
+
+  return `
+    ${esc(before)}<span class="antecedent">${
+      esc(antecedent)
+    }</span>${esc(between)}<span class="relative-clause"><span
+    class="relative-pronoun">${
+      esc(target.pronoun)
+    }</span>${
+      esc(clause.slice(target.pronoun.length))
+    }</span>${esc(after)}
+  `;
+}
+
+function toggleEnhancement(enabled){
+  enhancementEnabled=enabled;
+  $("enhancedReading")?.classList.toggle(
+    "no-enhancement",!enabled
+  );
+  $("enhancementLegend")?.classList.toggle(
+    "hidden",!enabled
+  );
+}
+
+function toggleTranslation(){
+  $("translation")?.classList.toggle("hidden");
+}
+
+/* ======================================
+   7. PART 1 - Reading
+====================================== */
+
+function renderReading(){
+  $("screen").innerHTML=`
+    <section class="panel">
+      ${stepBar()}
+      <span class="tag">PART 1 · Reading</span>
+      <h2>📖 영어 지문 읽기</h2>
+      <p class="sub">
+        이야기의 내용을 이해하고 강조된 문법 표현을 관찰하세요.
+      </p>
+
+      <div class="enhancement-toggle">
+        <label>
+          <input
+            type="checkbox"
+            ${enhancementEnabled?"checked":""}
+            onchange="toggleEnhancement(this.checked)"
+          >
+          ✨ 문법 시각 강조
+        </label>
+        <span class="sub">켜기 / 끄기</span>
+      </div>
+
+      <div
+        class="reading ${enhancementEnabled?"":"no-enhancement"}"
+        id="enhancedReading"
+      >
+        <div class="reading-title">${LESSON.title}</div>
+        <div class="english">
+          ${LESSON.paragraphs.map(paragraph=>`
+            <p>
+              ${paragraph.map(renderEnhancedSentence).join(" ")}
+            </p>
+          `).join("")}
+        </div>
+      </div>
+
+      <div
+        class="enhancement-legend ${enhancementEnabled?"":"hidden"}"
+        id="enhancementLegend"
+      >
+        <div class="legend-item">
+          <span class="antecedent">a girl</span> · 선행사
+        </div>
+        <div class="legend-item">
+          <span class="relative-pronoun">who</span> · 관계대명사
+        </div>
+        <div class="legend-item">
+          <span class="relative-clause">who cared ...</span>
+          · 관계대명사절
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn secondary" onclick="speakPassage()">
+          🔊 전체 지문 듣기
+        </button>
+        <button class="btn outline" onclick="toggleTranslation()">
+          🇰🇷 해석 보기 / 숨기기
+        </button>
+      </div>
+
+      <div id="translation" class="translation hidden">
+        ${LESSON.translations.map((t,i)=>`
+          <p><strong>${i+1}문단</strong><br>${esc(t)}</p>
+        `).join("")}
+      </div>
+
+      <div class="question">
+        <div class="question-title">💭 Reading Check</div>
+        <p>What did Mina do to help the environment?</p>
+        <div class="options" id="readingOptions">
+          <button class="option" onclick="readingCheck(0)">
+            She bought more plastic bottles.
+          </button>
+          <button class="option" onclick="readingCheck(1)">
+            She started a project to reduce plastic waste.
+          </button>
+          <button class="option" onclick="readingCheck(2)">
+            She stopped students from going to school.
+          </button>
+        </div>
+        <div id="readingFeedback" aria-live="polite"></div>
+      </div>
+
+      ${partNavigation()}
+    </section>
+  `;
+
+  if(state.readingCorrect){
+    const buttons=$("readingOptions").querySelectorAll("button");
+    buttons.forEach(b=>b.disabled=true);
+    buttons[1].classList.add("correct");
+    $("readingFeedback").innerHTML=`
+      <div class="feedback good">
+        ✅ 이미 완료한 독해 문제예요.
+        미나는 플라스틱 쓰레기를 줄이기 위한
+        프로젝트를 시작했어요.
+      </div>
+    `;
+  }
+}
+
+function readingCheck(index){
+  if(state.readingCorrect)return;
+
+  const buttons=$("readingOptions").querySelectorAll("button");
+
+  if(index===1){
+    state.readingCorrect=true;
+    markCompleted(0);
+    addXP(15);
+
+    buttons.forEach(b=>b.disabled=true);
+    buttons[1].classList.add("correct");
+
+    $("readingFeedback").innerHTML=`
+      <div class="feedback good">
+        <strong>🎉 정답! +15 XP</strong>
+        <p>
+          미나는 재사용 가능한 물병 사용을 장려하는
+          프로젝트를 시작했어요.
+        </p>
+        ${autoNotice()}
+      </div>
+    `;
+
+    scheduleAutoNext(()=>goHome());
+  }else{
+    buttons[index].classList.add("wrong");
+
+    $("readingFeedback").innerHTML=`
+      <div class="feedback hint">
+        💡 reusable bottles에 관한 문장을
+        다시 읽어 보세요.
+      </div>
+    `;
+  }
+}
+
+/* ======================================
+   8. PART 2 - Notice
+
+   기존 문법 표현 클릭 활동 유지
+====================================== */
+
+function renderDiscovery(){
+  const targets=LESSON.grammarTargets;
+
+  $("screen").innerHTML=`
+    <section class="panel">
+      ${stepBar()}
+      <span class="tag">PART 2 · Notice</span>
+      <h2>🔎 문법 탐정 미션</h2>
+
+      <p>
+        다음 문장들에서
+        <strong>앞의 명사를 설명하는 역할</strong>을
+        하는 단어를 찾아 눌러 보세요.
+      </p>
+
+      <p class="sub">총 5개의 표현을 찾아야 해요.</p>
+
+      <div class="progress">
+        <div
+          id="discoveryProgress"
+          class="fill"
+          style="width:${state.found.length/5*100}%"
+        ></div>
+      </div>
+
+      <p class="center">
+        <strong id="foundCount">
+          ${state.found.length} / 5 발견
+        </strong>
+      </p>
+
+      ${targets.map((t,i)=>`
+        <div class="question">
+          <div class="english">
+            ${esc(t.before)}
+            <button
+              id="target-${i}"
+              class="clickword ${
+                state.found.includes(i)?"found":""
+              }"
+              onclick="discover(${i})"
+            >${esc(t.word)}</button>
+            ${esc(t.after)}
+          </div>
+          <p class="sub">💬 ${esc(t.meaning)}</p>
+        </div>
+      `).join("")}
+
+      <div class="notice">
+        <strong>💡 관찰 질문</strong>
+        <p>
+          who, which, that은 각각 어떤 명사 뒤에 나오나요?
+          이 단어들이 이끄는 절은 문장에서 어떤 역할을 하나요?
+        </p>
+      </div>
+
+      <div id="discoveryFeedback" aria-live="polite"></div>
+
+      ${partNavigation()}
+    </section>
+  `;
+}
+
+function discover(index){
+  if(state.found.includes(index))return;
+
+  state.found.push(index);
+  addXP(5);
+
+  $("target-"+index).classList.add("found");
+  $("foundCount").textContent=
+    state.found.length+" / 5 발견";
+  $("discoveryProgress").style.width=
+    state.found.length/5*100+"%";
+
+  save();
+
+  if(state.found.length===5){
+    markCompleted(1);
+
+    $("discoveryFeedback").innerHTML=`
+      <div class="feedback good">
+        <strong>🎉 문법 표현 5개를 모두 찾았어요!</strong>
+        <p>
+          관계대명사 who, which, that이
+          앞의 명사를 설명한다는 공통점을 발견했어요.
+        </p>
+        ${autoNotice()}
+      </div>
+    `;
+
+    scheduleAutoNext(()=>goHome());
+  }
+}
+
+/* ======================================
+   9. PART 3 - Understand
+====================================== */
+
+function renderGrammar(){
+  $("screen").innerHTML=`
+    <section class="panel">
+      ${stepBar()}
+      <span class="tag">PART 3 · Understand</span>
+      <h2>🧠 관계대명사 문법 규칙</h2>
+
+      <div class="grammar-box">
+        <h3>1. 관계대명사란?</h3>
+        <p>
+          관계대명사는
+          <strong>앞의 명사(선행사)를 뒤에서 수식하는 절</strong>을
+          이끌어요.
+        </p>
+
+        <div class="grammar-example">
+          Mina was a girl
+          <mark>who cared deeply about the environment</mark>.
+          <p class="sub">
+            미나는 환경을 깊이 생각하는 소녀였다.
+          </p>
+          <p>
+            선행사: <strong>a girl</strong><br>
+            관계대명사: <strong>who</strong><br>
+            관계대명사절:
+            <strong>who cared deeply about the environment</strong>
+          </p>
+        </div>
+      </div>
+
+      <div class="grammar-box">
+        <h3>2. who / which / that</h3>
+        <p>
+          <strong>who</strong>: 사람을 선행사로 할 때<br>
+          <strong>which</strong>: 사물이나 동물을 선행사로 할 때<br>
+          <strong>that</strong>: 제한적 관계대명사절에서
+          사람이나 사물을 선행사로 할 때
+        </p>
+
+        <div class="grammar-example">
+          I know a boy <mark>who plays soccer</mark>.
+          <p class="sub">나는 축구하는 소년을 안다.</p>
+        </div>
+
+        <div class="grammar-example">
+          This is a book <mark>which makes me happy</mark>.
+          <p class="sub">
+            이것은 나를 행복하게 만드는 책이다.
+          </p>
+        </div>
+
+        <div class="grammar-example">
+          The project <mark>that changed our school</mark>
+          was successful.
+          <p class="sub">
+            우리 학교를 변화시킨 프로젝트는 성공적이었다.
+          </p>
+        </div>
+      </div>
+
+      <div class="grammar-box">
+        <h3>3. 주격 관계대명사의 구조</h3>
+        <p>
+          <strong>
+            선행사 + 주격 관계대명사 + 동사 ...
+          </strong>
+        </p>
+
+        <div class="grammar-example">
+          The students <mark>who participated</mark>
+          shared their experiences.
+        </div>
+
+        <p>
+          who가 관계대명사절에서 주어 역할을 하므로
+          그 뒤에 they를 다시 쓰지 않습니다.
+        </p>
+      </div>
+
+      <div class="grammar-box">
+        <h3>4. 관계대명사 that과 접속사 that</h3>
+
+        <div class="grammar-example">
+          The project became a movement
+          <mark>that changed our school</mark>.
+          <p class="sub">
+            관계대명사 that: a movement를 수식
+          </p>
+        </div>
+
+        <div class="grammar-example">
+          Mina showed us
+          <mark>that small actions can make a big difference</mark>.
+          <p class="sub">
+            접속사 that: 명사절을 이끌며
+            절 안에서 문장 성분 역할을 하지 않음
+          </p>
+        </div>
+      </div>
+
+      <div class="notice">
+        <strong>📌 핵심 정리</strong>
+        <p>
+          관계대명사절은 앞의 명사를 뒤에서 수식합니다.
+          주격 관계대명사는 관계대명사절의 주어 역할을 합니다.
+        </p>
+      </div>
+
+      <div class="actions">
+        <button
+          class="btn"
+          onclick="completePart(2)"
+        >
+          이해 완료 · 파트 선택으로 →
+        </button>
+      </div>
+
+      ${partNavigation()}
+    </section>
+  `;
+}
+
+/* ======================================
+   10. PART 4 - 객관식
+
+   정답 → 피드백 → 자동 다음 문제
+====================================== */
+
+function renderQuiz(){
+  if(state.quizIndex>=QUIZ.length){
+    renderQuizFinished();
+    return;
+  }
+
+  currentAttempt=0;
+  questionLocked=false;
+
+  const q=QUIZ[state.quizIndex];
+
+  $("screen").innerHTML=`
+    <section class="panel">
+      ${stepBar()}
+      <span class="tag">PART 4 · Check</span>
+      <h2>📝 문법 이해도 확인</h2>
+
+      <p class="sub">
+        정답을 맞히면 자동으로 다음 문제로 넘어가요.
+      </p>
+
+      <div class="progress">
+        <div
+          class="fill"
+          style="width:${state.quizIndex/QUIZ.length*100}%"
+        ></div>
+      </div>
+
+      <div class="question">
+        <div class="sub">
+          QUESTION ${state.quizIndex+1} / ${QUIZ.length}
+        </div>
+
+        <div class="question-title">${esc(q.q)}</div>
+
+        <div class="options" id="quizOptions">
+          ${q.options.map((option,i)=>`
+            <button
+              class="option"
+              id="option-${i}"
+              onclick="chooseOption(${i})"
+            >
+              ${i+1}. ${esc(option)}
+            </button>
+          `).join("")}
+        </div>
+
+        <div id="quizFeedback" aria-live="polite"></div>
+      </div>
+
+      ${partNavigation()}
+    </section>
+  `;
+}
+
+function chooseOption(index){
+  if(questionLocked)return;
+
+  const q=QUIZ[state.quizIndex];
+  const buttons=$("quizOptions").querySelectorAll("button");
+
+  if(index===q.answer){
+    questionLocked=true;
+
+    const xp=
+      currentAttempt===0?20:
+      currentAttempt===1?12:7;
+
+    state.quizAnswers.push({
+      question:state.quizIndex,
+      correct:true,
+      attempts:currentAttempt+1
+    });
+
+    addXP(xp);
+    save();
+
+    buttons.forEach(b=>b.disabled=true);
+    buttons[index].classList.add("correct");
+
+    $("quizFeedback").innerHTML=`
+      <div class="feedback good">
+        <strong>🎉 정답! +${xp} XP</strong>
+        <p>${esc(q.explain)}</p>
+        ${autoNotice()}
+      </div>
+    `;
+
+    scheduleAutoNext(nextQuiz);
+    return;
+  }
+
+  currentAttempt++;
+  buttons[index].classList.add("wrong");
+
+  if(currentAttempt<3){
+    $("quizFeedback").innerHTML=`
+      <div class="feedback hint">
+        <strong>💡 힌트 ${currentAttempt}/2</strong>
+        <p>
+          ${esc(
+            currentAttempt===1?q.hint1:q.hint2
+          )}
+        </p>
+        다시 선택해 보세요.
+      </div>
+    `;
+  }else{
+    questionLocked=true;
+
+    state.quizAnswers.push({
+      question:state.quizIndex,
+      correct:false,
+      attempts:3
+    });
+
+    state.mistakes.push({
+      type:"객관식",
+      question:q.q,
+      answer:q.options[q.answer]
+    });
+
+    save();
+
+    buttons.forEach(b=>b.disabled=true);
+    buttons[q.answer].classList.add("correct");
+
+    $("quizFeedback").innerHTML=`
+      <div class="feedback bad">
+        <strong>
+          📖 정답: ${esc(q.options[q.answer])}
+        </strong>
+        <p>${esc(q.explain)}</p>
+        ${autoNotice(WRONG_NEXT_DELAY)}
+      </div>
+    `;
+
+    scheduleAutoNext(nextQuiz,WRONG_NEXT_DELAY);
+  }
+}
+
+function nextQuiz(){
+  state.quizIndex++;
+  save();
+  renderQuiz();
+}
+
+function renderQuizFinished(){
+  markCompleted(3);
+
+  $("screen").innerHTML=`
+    <section class="panel center">
+      ${stepBar()}
+      <div class="hero">🎉</div>
+      <h2>문법 퀴즈 완료!</h2>
+      <p>
+        ${QUIZ.length}문제를 모두 풀었어요.
+      </p>
+      <p class="sub">
+        잠시 후 파트 선택 화면으로 이동합니다.
+      </p>
+      ${autoNotice()}
+      ${partNavigation()}
+    </section>
+  `;
+
+  scheduleAutoNext(()=>goHome());
+}
+
+/* ======================================
+   11. PART 5 - 문장 완성
+
+   복수 정답 허용
+   정답 → 피드백 → 자동 다음 문제
+====================================== */
+
+function renderWriting(){
+  if(state.writingIndex>=WRITING.length){
+    renderWritingFinished();
+    return;
+  }
+
+  currentAttempt=0;
+  questionLocked=false;
+
+  const w=WRITING[state.writingIndex];
+
+  $("screen").innerHTML=`
+    <section class="panel">
+      ${stepBar()}
+      <span class="tag">PART 5 · Apply</span>
+      <h2>✍️ 문장 완성하기</h2>
+
+      <p class="sub">
+        적절한 관계대명사를 입력하세요.
+        문법적으로 가능한 복수 정답을 인정합니다.
+      </p>
+
+      <div class="progress">
+        <div
+          class="fill"
+          style="width:${state.writingIndex/WRITING.length*100}%"
+        ></div>
+      </div>
+
+      <div class="question">
+        <div class="sub">
+          WRITING ${state.writingIndex+1} / ${WRITING.length}
+        </div>
+
+        <p><strong>${esc(w.ko)}</strong></p>
+
+        <div class="question-title">
+          ${esc(w.prompt)}
+        </div>
+
+        <input
+          id="writingAnswer"
+          class="answer"
+          type="text"
+          autocomplete="off"
+          autocapitalize="off"
+          spellcheck="false"
+          placeholder="관계대명사 입력"
+          onkeydown="
+            if(event.key==='Enter')checkWriting()
+          "
+        >
+
+        <div id="writingFeedback" aria-live="polite"></div>
+
+        <div class="actions" id="writingActions">
+          <button class="btn" onclick="checkWriting()">
+            정답 확인 →
+          </button>
+        </div>
+      </div>
+
+      ${partNavigation()}
+    </section>
+  `;
+
+  $("writingAnswer").focus();
+}
+
+function checkWriting(){
+  if(questionLocked)return;
+
+  const w=WRITING[state.writingIndex];
+  const input=$("writingAnswer");
+  const answer=normalizeAnswer(input.value);
+
+  if(!answer){
+    $("writingFeedback").innerHTML=`
+      <div class="feedback hint">
+        ✏️ 먼저 답을 입력해 보세요.
+      </div>
+    `;
+    return;
+  }
+
+  const correct=w.accepted.some(
+    a=>normalizeAnswer(a)===answer
+  );
+
+  if(correct){
+    questionLocked=true;
+
+    const xp=
+      currentAttempt===0?20:
+      currentAttempt===1?12:7;
+
+    state.writingAnswers.push({
+      question:state.writingIndex,
+      correct:true,
+      attempts:currentAttempt+1
+    });
+
+    addXP(xp);
+    save();
+
+    input.disabled=true;
+    $("writingActions").innerHTML="";
+
+    $("writingFeedback").innerHTML=`
+      <div class="feedback good">
+        <strong>🎉 정답! +${xp} XP</strong>
+        <p>${esc(w.explain)}</p>
+        <p>
+          가능한 정답:
+          <strong>${w.accepted.map(esc).join(" / ")}</strong>
+        </p>
+        ${autoNotice()}
+      </div>
+    `;
+
+    scheduleAutoNext(nextWriting);
+    return;
+  }
+
+  currentAttempt++;
+
+  if(currentAttempt<3){
+    $("writingFeedback").innerHTML=`
+      <div class="feedback hint">
+        <strong>💡 힌트 ${currentAttempt}/2</strong>
+        <p>
+          ${esc(
+            currentAttempt===1?w.hint1:w.hint2
+          )}
+        </p>
+        다시 도전해 보세요.
+      </div>
+    `;
+
+    input.focus();
+  }else{
+    questionLocked=true;
+
+    state.writingAnswers.push({
+      question:state.writingIndex,
+      correct:false,
+      attempts:3
+    });
+
+    state.mistakes.push({
+      type:"문장 완성",
+      question:w.prompt,
+      answer:w.accepted.join(" / ")
+    });
+
+    save();
+
+    input.disabled=true;
+    $("writingActions").innerHTML="";
+
+    $("writingFeedback").innerHTML=`
+      <div class="feedback bad">
+        <strong>
+          📖 정답: ${w.accepted.map(esc).join(" / ")}
+        </strong>
+        <p>${esc(w.explain)}</p>
+        ${autoNotice(WRONG_NEXT_DELAY)}
+      </div>
+    `;
+
+    scheduleAutoNext(nextWriting,WRONG_NEXT_DELAY);
+  }
+}
+
+function nextWriting(){
+  state.writingIndex++;
+  save();
+  renderWriting();
+}
+
+function renderWritingFinished(){
+  markCompleted(4);
+
+  $("screen").innerHTML=`
+    <section class="panel center">
+      ${stepBar()}
+      <div class="hero">🏆</div>
+      <h2>문장 완성 완료!</h2>
+      <p>
+        관계대명사를 문장에 적용하는 활동을 마쳤어요.
+      </p>
+      <p class="sub">
+        잠시 후 파트 선택 화면으로 이동합니다.
+      </p>
+      ${autoNotice()}
+      ${partNavigation()}
+    </section>
+  `;
+
+  scheduleAutoNext(()=>goHome());
+}
+
+/* ======================================
+   12. PART 6 - 학습 결과
+====================================== */
+
+function renderResults(){
+  const quizCorrect=state.quizAnswers.filter(
+    a=>a.correct
+  ).length;
+
+  const writingCorrect=state.writingAnswers.filter(
+    a=>a.correct
+  ).length;
+
+  markCompleted(5);
+
+  $("screen").innerHTML=`
+    <section class="panel">
+      ${stepBar()}
+      <span class="tag">PART 6 · Review</span>
+
+      <div class="center">
+        <div class="hero">🏆</div>
+        <h1>My Learning Report</h1>
+        <p>학습 결과를 확인해 보세요.</p>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <b>${state.xp}</b>
+          <span>획득 XP</span>
+        </div>
+        <div class="stat">
+          <b>${quizCorrect}/${QUIZ.length}</b>
+          <span>객관식 정답</span>
+        </div>
+        <div class="stat">
+          <b>${writingCorrect}/${WRITING.length}</b>
+          <span>문장 완성 정답</span>
+        </div>
+      </div>
+
+      <h3>📚 파트별 학습 현황</h3>
+
+      ${PARTS.map((p,i)=>`
+        <div class="grammar-example">
+          <strong>
+            ${p.icon} PART ${i+1} · ${p.ko}
+          </strong>
+          <span style="float:right">
+            ${state.completed[i]?"✅ 완료":"⏳ 미완료"}
+          </span>
+        </div>
+      `).join("")}
+
+      <h3>🔁 오답 기록</h3>
+
+      ${
+        state.mistakes.length
+          ?state.mistakes.map(m=>`
+            <div class="grammar-example">
+              <span class="tag">${esc(m.type)}</span>
+              <p>${esc(m.question)}</p>
+              <strong>정답: ${esc(m.answer)}</strong>
+            </div>
+          `).join("")
+          :`
+            <div class="notice">
+              아직 기록된 오답이 없어요.
+            </div>
+          `
+      }
+
+      <h3>📌 오늘의 핵심 문법</h3>
+
+      <div class="notice">
+        <p>
+          관계대명사절은 앞의 명사를 뒤에서 수식합니다.
+        </p>
+        <p>
+          사람 → <strong>who / that</strong><br>
+          사물 → <strong>which / that</strong>
+        </p>
+        <p>
+          주격 관계대명사는 관계대명사절 안에서
+          주어 역할을 합니다.
+        </p>
+      </div>
+
+      <div class="actions">
+        <button class="btn" onclick="goHome()">
+          📚 다른 파트 선택하기
+        </button>
+        <button class="btn outline" onclick="resetProgress()">
+          🔄 전체 학습 초기화
+        </button>
+      </div>
+    </section>
+  `;
+}
+
+/* ======================================
+   13. 학습 초기화
+====================================== */
+
+function resetProgress(){
+  const ok=confirm(
+    "모든 학습 기록을 초기화하고 처음부터 시작할까요?"
+  );
+
+  if(!ok)return;
+
+  cancelAutoNext();
+  state=freshState();
+  save();
+  goHome();
+}
+
+/* ======================================
+   14. 앱 시작
+====================================== */
+
+renderHome();
+
+</script>
+</body>
+</html>
